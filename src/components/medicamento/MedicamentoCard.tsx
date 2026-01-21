@@ -15,52 +15,51 @@ export function MedicamentoCard({ medicamento, onDelete }: MedicamentoCardProps)
     const horarios = calcularHorariosDosis(medicamento);
 
     return (
-        <div className="glass-card p-4">
-            <div className="flex items-start gap-4">
-                {/* Icono */}
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[var(--aurora-purple)] to-[var(--aurora-pink)] flex items-center justify-center flex-shrink-0">
-                    <Pill className="w-6 h-6 text-white" />
+        <div className="glass-card p-5 sm:p-6">
+            <div className="flex items-start gap-4 sm:gap-5">
+                {/* Icono - Más grande para mejor visualización */}
+                <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-[var(--aurora-purple)] to-[var(--aurora-pink)] flex items-center justify-center flex-shrink-0 shadow-lg">
+                    <Pill className="w-7 h-7 sm:w-8 sm:h-8 text-white" />
                 </div>
 
                 {/* Contenido */}
                 <div className="flex-1 min-w-0">
-                    <h3 className="font-semibold text-lg truncate">{medicamento.nombreMedicamento}</h3>
-                    <p className="text-sm text-[var(--text-secondary)] mb-2">{medicamento.nombreEnfermedad}</p>
+                    <h3 className="font-bold text-xl sm:text-2xl truncate leading-tight">{medicamento.nombreMedicamento}</h3>
+                    <p className="text-base sm:text-lg text-[var(--text-secondary)] mb-3 mt-1">{medicamento.nombreEnfermedad}</p>
 
-                    {/* Próxima dosis */}
+                    {/* Próxima dosis - Más prominente */}
                     {proximaDosis && (
-                        <div className="flex items-center gap-2 mb-2">
-                            <Clock className="w-4 h-4 text-[var(--aurora-cyan)]" />
-                            <span className="text-sm text-[var(--aurora-cyan)] font-medium">
+                        <div className="flex items-center gap-2.5 mb-3 bg-[var(--aurora-cyan)]/10 px-3 py-2 rounded-lg -mx-1">
+                            <Clock className="w-5 h-5 text-[var(--aurora-cyan)]" />
+                            <span className="text-base sm:text-lg text-[var(--aurora-cyan)] font-semibold">
                                 Próxima: {proximaDosis}
                             </span>
                         </div>
                     )}
 
-                    {/* Horarios */}
-                    <div className="flex flex-wrap gap-2 mb-3">
+                    {/* Horarios - Badges más grandes */}
+                    <div className="flex flex-wrap gap-2 sm:gap-2.5 mb-4">
                         {horarios.map((hora, idx) => (
-                            <span key={idx} className="badge badge-purple">
+                            <span key={idx} className="badge badge-purple text-sm sm:text-base px-3 py-1.5">
                                 {hora}
                             </span>
                         ))}
                     </div>
 
-                    {/* Fechas */}
-                    <p className="text-xs text-[var(--text-muted)]">
+                    {/* Fechas - Texto más legible */}
+                    <p className="text-sm sm:text-base text-[var(--text-muted)]">
                         {formatearRangoFechas(medicamento.fechaInicio, medicamento.fechaFin)}
                     </p>
                 </div>
             </div>
 
-            {/* Acciones */}
-            {/* Acciones - Botones más grandes para touch */}
-            <div className="flex gap-3 mt-4 pt-4 border-t border-[var(--border-color)]">
+            {/* Acciones - Botones optimizados para pantallas grandes */}
+            <div className="flex gap-3 sm:gap-4 mt-5 pt-5 border-t border-[var(--border-color)]">
                 <Link
                     href={`/editar/${medicamento.id}`}
-                    className="btn btn-secondary flex-1 py-3 text-base active:scale-95 transition-transform"
+                    className="btn btn-secondary flex-1 py-3.5 sm:py-4 text-base sm:text-lg font-semibold active:scale-95 transition-transform touch-manipulation"
                 >
-                    <Edit2 className="w-5 h-5" />
+                    <Edit2 className="w-5 h-5 sm:w-6 sm:h-6" />
                     Editar
                 </Link>
                 <button
@@ -71,10 +70,10 @@ export function MedicamentoCard({ medicamento, onDelete }: MedicamentoCardProps)
                         }
                         onDelete(medicamento.id);
                     }}
-                    className="btn btn-ghost px-4 py-3 text-[var(--error)] bg-[var(--bg-input)] hover:bg-red-500/10 active:scale-95 transition-all rounded-xl"
+                    className="btn btn-ghost px-4 sm:px-5 py-3.5 sm:py-4 text-[var(--error)] bg-[var(--bg-input)] hover:bg-red-500/10 active:scale-95 transition-all rounded-xl touch-manipulation"
                     aria-label="Eliminar medicamento"
                 >
-                    <Trash2 className="w-5 h-5" />
+                    <Trash2 className="w-5 h-5 sm:w-6 sm:h-6" />
                 </button>
             </div>
         </div>

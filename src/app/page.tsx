@@ -60,11 +60,11 @@ export default function HomePage() {
     <>
       <Header />
 
-      <main className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        {/* Título */}
-        <div className="mb-6">
-          <h2 className="text-xl font-bold mb-1">Mis Medicamentos Activos</h2>
-          <p className="text-sm text-[var(--text-secondary)]">
+      <main className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+        {/* Título - Más prominente */}
+        <div className="mb-6 sm:mb-8">
+          <h2 className="text-2xl sm:text-3xl font-bold mb-2">Mis Medicamentos Activos</h2>
+          <p className="text-base sm:text-lg text-[var(--text-secondary)]">
             {medicamentos.length} tratamiento{medicamentos.length !== 1 ? 's' : ''} activo{medicamentos.length !== 1 ? 's' : ''}
           </p>
         </div>
@@ -76,9 +76,9 @@ export default function HomePage() {
           </div>
         )}
 
-        {/* Lista de Medicamentos - Grid Responsivo (1 col en móvil, 2 en tablet) */}
+        {/* Lista de Medicamentos - Grid Responsivo con mejor espaciado */}
         {!isLoading && medicamentos.length > 0 && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pb-20">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 pb-24 sm:pb-28">
             {medicamentos.map(med => (
               <MedicamentoCard
                 key={med.id}
@@ -95,12 +95,12 @@ export default function HomePage() {
             <div className="empty-state-icon">
               <Pill className="w-16 h-16 text-[var(--aurora-purple)]" />
             </div>
-            <h3 className="empty-state-title">No tienes medicamentos activos</h3>
-            <p className="empty-state-text">
+            <h3 className="empty-state-title text-xl sm:text-2xl">No tienes medicamentos activos</h3>
+            <p className="empty-state-text text-base sm:text-lg">
               Agrega tu primer medicamento para comenzar a recibir recordatorios
             </p>
-            <Link href="/nuevo" className="btn btn-primary">
-              <Plus className="w-5 h-5" />
+            <Link href="/nuevo" className="btn btn-primary btn-lg">
+              <Plus className="w-6 h-6" />
               Agregar Medicamento
             </Link>
           </div>

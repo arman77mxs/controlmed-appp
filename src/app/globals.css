@@ -530,8 +530,15 @@ body {
 }
 
 /* ============================================
-   Samsung S25 Ultra & Modern Mobile Optimizations
+   Samsung S25+ / S25 Ultra & Modern Mobile Optimizations
    ============================================ */
+
+/* Touch Manipulation - Optimización para touch */
+.touch-manipulation {
+  touch-action: manipulation;
+  -webkit-user-select: none;
+  user-select: none;
+}
 
 /* Safe Area Support - Para pantallas con notch/cutout y bordes curvos */
 @supports (padding: max(0px)) {
@@ -599,7 +606,7 @@ body {
   }
 }
 
-/* Samsung S25 Ultra - Pantalla alta (19.5:9 aspect ratio) */
+/* Samsung S25+ / S25 Ultra - Pantalla alta (19.5:9 aspect ratio) */
 @media (min-height: 800px) and (max-width: 500px) {
   .page-container {
     padding-top: max(1.5rem, env(safe-area-inset-top));
@@ -612,6 +619,49 @@ body {
   /* Más espacio para contenido en pantallas altas */
   .glass-card {
     margin-bottom: 1rem;
+  }
+}
+
+/* Samsung S25+ - Optimizaciones específicas (6.7" pantalla) */
+@media (min-width: 360px) and (max-width: 420px) and (min-height: 800px) {
+  /* Tamaños de texto optimizados para lectura a distancia normal */
+  body {
+    font-size: 16px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  h2 {
+    font-size: 1.375rem;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+  }
+
+  /* Botones más cómodos para thumbs */
+  .btn {
+    min-height: 48px;
+    padding: 0.875rem 1.5rem;
+  }
+
+  /* Inputs más grandes para evitar zoom automático */
+  .input-field {
+    font-size: 16px;
+    padding: 1rem 1.25rem;
+  }
+
+  /* Cards con más espacio interno */
+  .glass-card {
+    padding: 1.25rem;
+  }
+
+  /* Bottom nav más espacioso */
+  .bottom-nav {
+    height: 72px;
+    padding-bottom: max(20px, env(safe-area-inset-bottom));
   }
 }
 
@@ -661,5 +711,58 @@ html {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+/* Optimización adicional para pantallas AMOLED (Samsung) */
+@media (prefers-color-scheme: dark) {
+  /* Aprovechar negro puro para ahorro de batería en AMOLED */
+  body {
+    background: #000000;
+  }
+
+  .glass-card {
+    background: rgba(10, 10, 15, 0.5);
+  }
+
+  /* Reducir glow en modo oscuro para mejor contraste */
+  .glass-card:hover,
+  .glass-card:active {
+    box-shadow: 0 0 15px rgba(147, 51, 234, 0.25);
+  }
+}
+
+/* Mejoras para gestos de navegación Android */
+@supports (padding: env(safe-area-inset-bottom)) {
+  .bottom-nav {
+    /* Extra padding para barras de gestos de Android */
+    padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 12px);
+  }
+
+  /* Ajustar contenido principal para no quedar detrás de la nav */
+  main {
+    padding-bottom: calc(80px + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+/* Optimización de rendimiento para scrolling */
+.glass-card,
+.btn,
+.bottom-nav {
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Mejora de contraste para modo oscuro en exteriores */
+@media (prefers-contrast: high) {
+  :root {
+    --border-color: rgba(255, 255, 255, 0.2);
+    --text-secondary: rgba(255, 255, 255, 0.85);
+    --text-muted: rgba(255, 255, 255, 0.65);
+  }
+
+  .glass-card {
+    border-width: 1.5px;
   }
 }
