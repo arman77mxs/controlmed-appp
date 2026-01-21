@@ -60,7 +60,7 @@ export default function HomePage() {
     <>
       <Header />
 
-      <main className="max-w-lg mx-auto px-4 py-6">
+      <main className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
         {/* Título */}
         <div className="mb-6">
           <h2 className="text-xl font-bold mb-1">Mis Medicamentos Activos</h2>
@@ -76,9 +76,9 @@ export default function HomePage() {
           </div>
         )}
 
-        {/* Lista de Medicamentos */}
+        {/* Lista de Medicamentos - Grid Responsivo */}
         {!isLoading && medicamentos.length > 0 && (
-          <div className="space-y-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {medicamentos.map(med => (
               <MedicamentoCard
                 key={med.id}
