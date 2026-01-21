@@ -76,9 +76,9 @@ export default function HomePage() {
           </div>
         )}
 
-        {/* Lista de Medicamentos - Grid Responsivo */}
+        {/* Lista de Medicamentos - Grid Responsivo (1 col en móvil, 2 en tablet) */}
         {!isLoading && medicamentos.length > 0 && (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pb-20">
             {medicamentos.map(med => (
               <MedicamentoCard
                 key={med.id}

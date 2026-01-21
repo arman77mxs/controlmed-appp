@@ -27,10 +27,10 @@ export function BottomNav() {
                                 <Link
                                     key={item.href}
                                     href={item.href}
-                                    className="relative -top-6 group"
+                                    className="relative -top-5 group"
                                 >
-                                    <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[var(--aurora-purple)] to-[var(--aurora-pink)] flex items-center justify-center shadow-lg shadow-purple-500/30 hover:shadow-xl hover:scale-105 active:scale-95 transition-all">
-                                        <Icon className="w-7 h-7 text-white" />
+                                    <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[var(--aurora-purple)] to-[var(--aurora-pink)] flex items-center justify-center shadow-lg shadow-purple-500/30 hover:shadow-xl hover:scale-105 active:scale-95 transition-all">
+                                        <Icon className="w-6 h-6 text-white" />
                                     </div>
                                 </Link>
                             );
