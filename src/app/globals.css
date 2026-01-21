@@ -1,43 +1,46 @@
 @import "tailwindcss";
 
 :root {
-  /* Colores Principales - Aurora Theme */
+  /* Colores Principales - Aurora Theme (Optimized for AMOLED) */
   --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-  
-  /* Fondos */
-  --bg-dark: #0f0f1a;
-  --bg-darker: #0a0a12;
-  --bg-card: rgba(255, 255, 255, 0.05);
-  --bg-card-hover: rgba(255, 255, 255, 0.1);
-  --bg-input: rgba(255, 255, 255, 0.08);
-  
+
+  /* Fondos - AMOLED Friendly */
+  --bg-dark: #050508;
+  /* Casi negro absoluto para AMOLED */
+  --bg-darker: #000000;
+  /* Negro puro */
+  --bg-card: rgba(20, 20, 30, 0.4);
+  /* Más translúcido */
+  --bg-card-hover: rgba(30, 30, 40, 0.5);
+  --bg-input: rgba(255, 255, 255, 0.03);
+
   /* Colores Aurora */
   --aurora-purple: #9333ea;
   --aurora-pink: #ec4899;
   --aurora-cyan: #06b6d4;
   --aurora-blue: #3b82f6;
   --aurora-green: #10b981;
-  
+
   /* Texto */
   --text-primary: #ffffff;
   --text-secondary: rgba(255, 255, 255, 0.7);
   --text-muted: rgba(255, 255, 255, 0.5);
-  
+
   /* Estados */
   --success: #10b981;
   --warning: #f59e0b;
   --error: #ef4444;
   --info: #3b82f6;
-  
+
   /* Bordes */
   --border-color: rgba(255, 255, 255, 0.1);
   --border-focus: rgba(147, 51, 234, 0.5);
-  
+
   /* Sombras */
   --shadow-glow: 0 0 20px rgba(147, 51, 234, 0.3);
   --shadow-glow-pink: 0 0 20px rgba(236, 72, 153, 0.3);
-  
+
   /* Spacing */
   --space-1: 0.25rem;
   --space-2: 0.5rem;
@@ -46,7 +49,7 @@
   --space-5: 1.25rem;
   --space-6: 1.5rem;
   --space-8: 2rem;
-  
+
   /* Radii */
   --radius-sm: 0.375rem;
   --radius-md: 0.5rem;
@@ -94,7 +97,7 @@ body {
   left: -50%;
   width: 200%;
   height: 200%;
-  background: 
+  background:
     radial-gradient(ellipse at 20% 80%, rgba(147, 51, 234, 0.15) 0%, transparent 50%),
     radial-gradient(ellipse at 80% 20%, rgba(236, 72, 153, 0.1) 0%, transparent 50%),
     radial-gradient(ellipse at 40% 40%, rgba(6, 182, 212, 0.1) 0%, transparent 50%);
@@ -105,6 +108,7 @@ body {
   0% {
     transform: translate(0, 0) rotate(0deg);
   }
+
   100% {
     transform: translate(-5%, -5%) rotate(3deg);
   }
@@ -326,6 +330,7 @@ body {
     transform: translateX(100%);
     opacity: 0;
   }
+
   to {
     transform: translateX(0);
     opacity: 1;
@@ -356,8 +361,13 @@ body {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes scaleIn {
@@ -365,6 +375,7 @@ body {
     transform: scale(0.95);
     opacity: 0;
   }
+
   to {
     transform: scale(1);
     opacity: 1;
@@ -411,7 +422,9 @@ body {
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* Page Container */
@@ -507,7 +520,7 @@ body {
   .btn {
     padding: 0.625rem 1.25rem;
   }
-  
+
   .input-field {
     padding: 0.75rem;
   }
@@ -524,7 +537,7 @@ body {
     padding-left: max(0px, env(safe-area-inset-left));
     padding-right: max(0px, env(safe-area-inset-right));
   }
-  
+
   .page-container {
     /* Padding superior para evitar la cámara/notch */
     padding-top: max(1rem, env(safe-area-inset-top));
@@ -550,28 +563,29 @@ body {
 
 /* Touch Optimizations para Samsung S25 Ultra */
 @media (pointer: coarse) {
+
   /* Área táctil mínima de 44px para mejor accesibilidad */
-  .btn, 
+  .btn,
   .btn-icon,
   .calendar-day,
   .nav-item {
     min-height: 44px;
     min-width: 44px;
   }
-  
+
   /* Feedback táctil mejorado */
   .btn:active,
   .glass-card:active {
     transform: scale(0.97);
     opacity: 0.9;
   }
-  
+
   /* Desactivar hover en touch screens */
   .glass-card:hover {
     transform: none;
     box-shadow: none;
   }
-  
+
   .glass-card:active {
     background: var(--bg-card-hover);
     border-color: rgba(147, 51, 234, 0.3);
@@ -584,11 +598,11 @@ body {
   .page-container {
     padding-top: max(1.5rem, env(safe-area-inset-top));
   }
-  
+
   .empty-state {
     padding: 4rem 1.5rem;
   }
-  
+
   /* Más espacio para contenido en pantallas altas */
   .glass-card {
     margin-bottom: 1rem;
@@ -596,12 +610,14 @@ body {
 }
 
 /* Pantallas QHD+ (Samsung S25 Ultra tiene 3120x1440) */
-@media (-webkit-min-device-pixel-ratio: 3), (min-resolution: 3dppx) {
+@media (-webkit-min-device-pixel-ratio: 3),
+(min-resolution: 3dppx) {
+
   /* Bordes más finos se ven mejor en pantallas de alta densidad */
   .glass-card {
     border-width: 0.5px;
   }
-  
+
   .input-field {
     border-width: 0.5px;
   }
@@ -624,7 +640,7 @@ html {
     width: 0;
     height: 0;
   }
-  
+
   * {
     scrollbar-width: none;
   }
@@ -632,6 +648,7 @@ html {
 
 /* Animaciones reducidas para usuarios que lo prefieren */
 @media (prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {

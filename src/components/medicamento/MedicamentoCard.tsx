@@ -54,19 +54,27 @@ export function MedicamentoCard({ medicamento, onDelete }: MedicamentoCardProps)
             </div>
 
             {/* Acciones */}
-            <div className="flex gap-2 mt-4 pt-4 border-t border-[var(--border-color)]">
+            {/* Acciones - Botones más grandes para touch */}
+            <div className="flex gap-3 mt-4 pt-4 border-t border-[var(--border-color)]">
                 <Link
                     href={`/editar/${medicamento.id}`}
-                    className="btn btn-secondary btn-sm flex-1"
+                    className="btn btn-secondary flex-1 py-3 text-base active:scale-95 transition-transform"
                 >
-                    <Edit2 className="w-4 h-4" />
+                    <Edit2 className="w-5 h-5" />
                     Editar
                 </Link>
                 <button
-                    onClick={() => onDelete(medicamento.id)}
-                    className="btn btn-ghost btn-sm text-[var(--error)]"
+                    onClick={() => {
+                        // Haptic feedback para Samsung/Android
+                        if (typeof navigator !== 'undefined' && navigator.vibrate) {
+                            navigator.vibrate(50);
+                        }
+                        onDelete(medicamento.id);
+                    }}
+                    className="btn btn-ghost px-4 py-3 text-[var(--error)] bg-[var(--bg-input)] hover:bg-red-500/10 active:scale-95 transition-all rounded-xl"
+                    aria-label="Eliminar medicamento"
                 >
-                    <Trash2 className="w-4 h-4" />
+                    <Trash2 className="w-5 h-5" />
                 </button>
             </div>
         </div>
