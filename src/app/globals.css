@@ -512,3 +512,131 @@ body {
     padding: 0.75rem;
   }
 }
+
+/* ============================================
+   Samsung S25 Ultra & Modern Mobile Optimizations
+   ============================================ */
+
+/* Safe Area Support - Para pantallas con notch/cutout y bordes curvos */
+@supports (padding: max(0px)) {
+  body {
+    /* Padding para safe areas (notch, punch-hole camera, bordes curvos) */
+    padding-left: max(0px, env(safe-area-inset-left));
+    padding-right: max(0px, env(safe-area-inset-right));
+  }
+  
+  .page-container {
+    /* Padding superior para evitar la cámara/notch */
+    padding-top: max(1rem, env(safe-area-inset-top));
+    padding-bottom: calc(5rem + env(safe-area-inset-bottom));
+    padding-left: max(1rem, env(safe-area-inset-left));
+    padding-right: max(1rem, env(safe-area-inset-right));
+  }
+}
+
+/* Bottom Navigation - Fixed con Safe Area */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: rgba(15, 15, 26, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid var(--border-color);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* Touch Optimizations para Samsung S25 Ultra */
+@media (pointer: coarse) {
+  /* Área táctil mínima de 44px para mejor accesibilidad */
+  .btn, 
+  .btn-icon,
+  .calendar-day,
+  .nav-item {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Feedback táctil mejorado */
+  .btn:active,
+  .glass-card:active {
+    transform: scale(0.97);
+    opacity: 0.9;
+  }
+  
+  /* Desactivar hover en touch screens */
+  .glass-card:hover {
+    transform: none;
+    box-shadow: none;
+  }
+  
+  .glass-card:active {
+    background: var(--bg-card-hover);
+    border-color: rgba(147, 51, 234, 0.3);
+    box-shadow: var(--shadow-glow);
+  }
+}
+
+/* Samsung S25 Ultra - Pantalla alta (19.5:9 aspect ratio) */
+@media (min-height: 800px) and (max-width: 500px) {
+  .page-container {
+    padding-top: max(1.5rem, env(safe-area-inset-top));
+  }
+  
+  .empty-state {
+    padding: 4rem 1.5rem;
+  }
+  
+  /* Más espacio para contenido en pantallas altas */
+  .glass-card {
+    margin-bottom: 1rem;
+  }
+}
+
+/* Pantallas QHD+ (Samsung S25 Ultra tiene 3120x1440) */
+@media (-webkit-min-device-pixel-ratio: 3), (min-resolution: 3dppx) {
+  /* Bordes más finos se ven mejor en pantallas de alta densidad */
+  .glass-card {
+    border-width: 0.5px;
+  }
+  
+  .input-field {
+    border-width: 0.5px;
+  }
+}
+
+/* Prevent Pull-to-Refresh en PWA mode */
+html {
+  overscroll-behavior-y: contain;
+}
+
+/* Smooth scrolling para toda la app */
+html {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Hide scrollbar en mobile pero mantener funcionalidad */
+@media (max-width: 640px) {
+  ::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+  
+  * {
+    scrollbar-width: none;
+  }
+}
+
+/* Animaciones reducidas para usuarios que lo prefieren */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

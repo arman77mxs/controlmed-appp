@@ -26,6 +26,7 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 1,
   userScalable: false,
+  viewportFit: "cover", // Soporte para pantallas con bordes curvos (Samsung S25 Ultra)
 };
 
 export default function RootLayout({
